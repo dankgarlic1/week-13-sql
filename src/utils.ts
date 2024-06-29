@@ -1,9 +1,12 @@
 import { Client } from "pg";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const db_url = process.env.POSTGRES_URL;
 
 export async function getClient() {
-  const client = new Client(
-    "postgresql://postgres.ezpajjfpczzeuwsexowr:Harshit@20044002@aws-0-ap-south-1.pooler.supabase.com:6543/postgres"
-  );
+  const client = new Client(db_url);
   await client.connect();
   return client;
 }
